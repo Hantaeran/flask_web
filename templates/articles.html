@@ -1,66 +1,59 @@
- {% extends 'layout.html' %}
- {% block body %}
+{% extends 'layout.html' %} {% block body %}
 
+<h1>게시판</h1>
 
-<body>
-    
-    <h1>게시판</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">LIST Page</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">LIST Page</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 271px;">ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">TITLE</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 199px;">AUTHOR</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 101px;">DATE</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 189px;">EDIT</th>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 271px;">ID</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">TITLE</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 199px;">AUTHOR</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 101px;">DATE</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 189px;">EDIT</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="1">ID</th>
+                                    <th rowspan="1" colspan="1">TITLE</th>
+                                    <th rowspan="1" colspan="1">AUTHOR</th>
+                                    <th rowspan="1" colspan="1">DATE</th>
+                                    <th rowspan="1" colspan="1">EDIT</th>
 
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th rowspan="1" colspan="1">ID</th>
-                                        <th rowspan="1" colspan="1">TITLE</th>
-                                        <th rowspan="1" colspan="1">AUTHOR</th>
-                                        <th rowspan="1" colspan="1">DATE</th>
-                                        <th rowspan="1" colspan="1">EDIT</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
 
-                                    </tr>
-                                </tfoot>
-                                <tbody>
+                                {% for i in data %}
+                                <tr class="odd">
+                                    <td class="sorting_1">{{i[0]}}</td>
+                                    <td><a href="/detail/{{i[0]}}">{{i[1]}}</a> </td>
+                                    <td>{{i[3]}}</td>
+                                    <td>{{i[4]}}</td>
+                                    <td><button class="btn btn-primary ">편집</button>
+                                        <a href="/delete/{{i[0]}}"><button class="btn btn-danger" onclick="return confirm('정말삭제하시겠습니까?')">삭제</button></a></td>
+                                </tr>
+                                {% endfor %}
 
-                                    {% for i in data %}
-                                    <tr class="odd">
-                                        <td class="sorting_1">{{i[0]}}</td>
-                                        <td><a href="/detail/{{i[0]}}">{{i[1]}}</a></td>
-                                        <td>{{i[3]}}</td>
-                                        <td>{{i[4]}}</td>
-                                        <td><button class="btn btn-primary">편집</button><a hef="/delete/{{i[0]}}"><button class="btn btn-danger" onclick="return confirm('정말삭제하시겠습니까?')">삭제</button></td></a>
-                                    </tr>
-                                    {% endfor %}
-
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
-
-    
-   
-</body>
- {% endblock %}
+</div>
+{% endblock %}
 </html>

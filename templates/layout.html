@@ -16,10 +16,11 @@
     <link href="{{url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <title>게시판</title>
 </head>
+
 <body>
     {% include "includes/navbar.html" %}
     <div class="container">
-    {% block body %} {% endblock %}
+        {% block body %} {% endblock %}
     </div>
     <!-- Bootstrap core JavaScript-->
     <script src="{{ url_for( 'static', filename='vendor/jquery/jquery.min.js')}}"></script>
